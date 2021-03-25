@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Pause_script : MonoBehaviour
 {
     public static bool GameIsPause = false;
-    public GameObject PauseMenu;
+    public static GameObject PauseMenu;
     //public GameObject WinMenu;
     void Update()
     {
@@ -18,6 +18,7 @@ public class Pause_script : MonoBehaviour
             else
                 Pause();
         }
+        
     }
     public void Resume()
     {
@@ -25,7 +26,7 @@ public class Pause_script : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPause = false;
     }
-    public void Pause()
+    public static void Pause()
     {
         PauseMenu.SetActive(true);
         Time.timeScale = 0f;
