@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private bool isJump = false;
     private Rigidbody2D rb;
+    public static bool isDead = false;
+    [SerializeField] private Camera cam;
 
     private void Start()
     {
@@ -28,4 +30,14 @@ public class PlayerController : MonoBehaviour
             isJump = false;
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("obstacle"))
+        {
+            isDead = true;
+        }
+    }
+
 }
