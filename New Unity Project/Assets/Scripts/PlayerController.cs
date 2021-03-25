@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private bool isJump = false;
     private Rigidbody2D rb;
     public static bool isDead = false;
+    public Animator animator;
     [SerializeField] private Camera cam;
 
     private void Start()
@@ -18,7 +19,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
+        {
             isJump = true;
+            animator.SetBool("Jump", true);
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -27,6 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0f, 0f);
             rb.AddForce(new Vector2(0f, 500f));
+            animator.SetBool("Jump", false);
             isJump = false;
         }
     }
