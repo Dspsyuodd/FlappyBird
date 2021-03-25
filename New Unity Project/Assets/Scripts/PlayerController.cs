@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static float h = 99f;
     private bool isJump = false;
     private Rigidbody2D rb;
     public static bool isDead = false;
@@ -18,12 +19,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
         {
             isJump = true;
-            animator.SetBool("Jump", true);
-        }
 
+        }
 
     }
 
@@ -31,9 +32,9 @@ public class PlayerController : MonoBehaviour
     {
         if (isJump)
         {
+            animator.SetTrigger("Jump");
             rb.velocity = new Vector2(0f, 0f);
             rb.AddForce(new Vector2(0f, 500f));
-            animator.SetBool("Jump", false);
             isJump = false;
         }
     }
