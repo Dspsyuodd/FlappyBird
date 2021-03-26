@@ -10,7 +10,7 @@ public class MainController : MonoBehaviour
 
     void Update()
     {
-        if (timer <= 0f && !PlayerController.isDead)
+        if (timer <= 0f && !PlayerController.isDead && Pause_script.GameIsStarted)
         {
             timer = 1.5f;
             GameObject a = Instantiate(obst, new Vector3(9.1f, Random.Range(0.1f, 4f), 0f), Quaternion.identity);
@@ -26,4 +26,5 @@ public class MainController : MonoBehaviour
         if(!PlayerController.isDead)
             Destroy(a);
     }
+
 }
