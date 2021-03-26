@@ -52,7 +52,11 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
         }
-        
+        //if (collision.CompareTag("Floor")&& isDead)
+        //{
+        //    Time.timeScale = 0f;
+        //}
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

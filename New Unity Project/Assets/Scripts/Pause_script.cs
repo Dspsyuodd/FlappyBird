@@ -13,6 +13,7 @@ public class Pause_script : MonoBehaviour
     public GameObject Pause_Button;
     public Text Dead_score;
     public Text Best_score;
+    public GameObject Best_score_plane;
 
     void Update()
     {
@@ -57,13 +58,18 @@ public class Pause_script : MonoBehaviour
         Dead_score.text = Mathf.Ceil(PlayerController.score_).ToString();
         if (Mathf.Ceil(PlayerController.score_) > PlayerPrefs.GetFloat("Best_score"))
         {
-            PlayerPrefs.SetFloat("Best_score", Mathf.Ceil(PlayerController.score_));
+            Best_score_changer();
         }
         Best_score.text = PlayerPrefs.GetFloat("Best_score").ToString();
         Score_counter.SetActive(false);
         Pause_Button.SetActive(false);
 
 
+    }
+    void Best_score_changer()
+    {
+        PlayerPrefs.SetFloat("Best_score", Mathf.Ceil(PlayerController.score_));
+        Best_score_plane.SetActive(true);
     }
     //public void Menu()
     //{
