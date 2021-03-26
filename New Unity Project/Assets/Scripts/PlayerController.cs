@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private bool isJump = false;
     private Rigidbody2D rb;
     public static bool isDead = false;
-    public Animator animator;
+    [SerializeField] private Animator animator;
     [SerializeField] private Camera cam;
     public Text Score;
     public static int score_ = 0;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isJump && !isDead)
+        if (isJump && !isDead && Pause_script.GameIsStarted)
         {
             animator.SetTrigger("Jump");
             rb.velocity = new Vector2(0f, 0f);
