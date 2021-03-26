@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private bool isJump = false;
     private Rigidbody2D rb;
     public static bool isDead = false;
+    [SerializeField] AudioSource jumpSound;
+    [SerializeField] AudioSource deathSound;
     [SerializeField] private Animator animator;
     [SerializeField] private Camera cam;
     public Text Score;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0f, 0f);
             rb.AddForce(new Vector2(0f, 500f));
             isJump = false;
+            jumpSound.Play();
         }
     }
 
@@ -50,13 +53,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("obstacle"))
         {
+            if(isDead)
+                deathSound.Play();
             isDead = true;
         }
-        //if (collision.CompareTag("Floor")&& isDead)
-        //{
-        //    Time.timeScale = 0f;
-        //}
-
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
