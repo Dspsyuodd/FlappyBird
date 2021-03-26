@@ -14,12 +14,12 @@ public class MainController : MonoBehaviour
         {
             timer = 1.5f;
             GameObject a = Instantiate(obst, new Vector3(9.1f, Random.Range(0.1f, 4f), 0f), Quaternion.identity);
-            StartCoroutine(dest(a));
+            StartCoroutine(Dest(a));
         }
         timer -= Time.deltaTime;
     }
 
-    private  IEnumerator dest(GameObject a)
+    private  IEnumerator Dest(GameObject a)
     {
         yield return new WaitForSeconds(5f);
 
