@@ -8,7 +8,7 @@ public class MainController : MonoBehaviour
 
     private float timer = 0.8f;
 
-    void Update()
+    void FixedUpdate()
     {
         if (timer <= 0f && !PlayerController.isDead)
         {

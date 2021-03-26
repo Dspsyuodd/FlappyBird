@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isJump)
+        if (isJump && !isDead)
         {
             animator.SetTrigger("Jump");
             rb.velocity = new Vector2(0f, 0f);
