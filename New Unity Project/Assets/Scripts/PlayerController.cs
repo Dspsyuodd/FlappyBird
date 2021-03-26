@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     [SerializeField] private Camera cam;
     public Text Score;
-    private int score_ = 0;
+    public static float score_ = 0;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
             isJump = true;
 
         }
-        Score.text = score_.ToString();
+        Score.text = Mathf.Ceil(score_).ToString();
 
     }
 
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Counter"))
         {
-            score_++;
+            score_ = score_ + 0.5f;
         }
     }
 
