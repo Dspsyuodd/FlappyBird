@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Pause_script : MonoBehaviour
 {
+    public static bool GameIsStarted = false;
     public static bool GameIsPause = false;
     public GameObject PauseMenu;
     public GameObject LoseMenu;
@@ -14,6 +15,9 @@ public class Pause_script : MonoBehaviour
     public Text Dead_score;
     public Text Best_score;
     public GameObject Best_score_plane;
+    public GameObject Player;
+    //public Animator anim;
+
 
     void Update()
     {
@@ -48,29 +52,28 @@ public class Pause_script : MonoBehaviour
         GameIsPause = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         PlayerController.isDead = false;
-        PlayerController.score_ = 0f;
+        PlayerController.score_ = 0;
+        GameIsStarted = false;
 
     }
     void Death()
     {
-
         LoseMenu.SetActive(true);
-        Dead_score.text = Mathf.Ceil(PlayerController.score_).ToString();
-        if (Mathf.Ceil(PlayerController.score_) > PlayerPrefs.GetFloat("Best_score"))
+        Dead_score.text = PlayerController.score_.ToString();
+        if (PlayerController.score_ > PlayerPrefs.GetInt("Best_score"))
         {
             Best_score_changer();
         }
-        Best_score.text = PlayerPrefs.GetFloat("Best_score").ToString();
+        Best_score.text = PlayerPrefs.GetInt("Best_score").ToString();
         Score_counter.SetActive(false);
         Pause_Button.SetActive(false);
-
-
     }
     void Best_score_changer()
     {
-        PlayerPrefs.SetFloat("Best_score", Mathf.Ceil(PlayerController.score_));
+        PlayerPrefs.SetInt("Best_score", PlayerController.score_);
         Best_score_plane.SetActive(true);
     }
+    
     //public void Menu()
     //{
     //    Time.timeScale = 1f;
