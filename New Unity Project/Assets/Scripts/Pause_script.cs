@@ -8,7 +8,10 @@ public class Pause_script : MonoBehaviour
 {
     public static bool GameIsPause = false;
     public GameObject PauseMenu;
-    //public GameObject WinMenu;
+    public GameObject LoseMenu;
+    public GameObject Score_counter;
+    public GameObject Pause_Button;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -17,6 +20,10 @@ public class Pause_script : MonoBehaviour
                 Resume();
             else
                 Pause();
+        }
+        if (PlayerController.isDead)
+        {
+            Death();
         }
         
     }
@@ -37,6 +44,14 @@ public class Pause_script : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPause = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerController.isDead = false;
+
+    }
+    void Death()
+    {
+        LoseMenu.SetActive(true);
+        Score_counter.SetActive(false);
+        Pause_Button.SetActive(false);
     }
     //public void Menu()
     //{
