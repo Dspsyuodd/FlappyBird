@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0f, 0f);
             rb.AddForce(new Vector2(0f, 500f));
             isJump = false;
-            jumpSound.Play();
         }
     }
 
@@ -53,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("obstacle"))
         {
-            if(isDead)
+            if(!isDead)
                 deathSound.Play();
             isDead = true;
         }
@@ -63,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Counter"))
         {
             score_++;
+            jumpSound.Play();
         }
     }
     public void Start_game()
